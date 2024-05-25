@@ -35,9 +35,9 @@ const route_sauces = require('./router/route_sauces')
 //    next();
 // });
 const corsOptions = {
-   origin: ['https://backend-mongodb-0jt7.onrender.com'],
+   origin:"*",
    credentials: true,
-   allowedHeaders: ['sessionId', 'Content-Type'],
+   allowedHeaders: ['sessionId', 'Content-Type','Authorization'],
    exposedHeaders: ['sessionId'],
    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
    preflightContinue: false,
