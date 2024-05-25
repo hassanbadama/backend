@@ -14,7 +14,7 @@ exports.AjouterUser = (req, res, next)=>{
       .then((hash) => {
         const utilisateur = new Utilisateur({
             nom: req.body.nom,
-            role:true,
+            role:false,
             prenom: req.body.prenom,
             mot: hash,
             email: req.body.email,

@@ -6,20 +6,25 @@ exports.ajouteSauce = (req, res, next) => {
     //recuperer toutes les donnee dans le formulaire
     console.log("teste reqqqq");
    
-   console.log(req.body);
+   console.log(req.body.userId);
    console.log(req.body.nom);
    console.log(req.body.description);
+   console.log(req.body.image_publication);
     const data = req.body
     console.log('enregitre');
     console.log(data);
     const sauces = new Sauces({
-      ...data,
+      userId:req.body.userId,
+      description:req.body.description,
       file:`${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
       // file: `/images/${req.files.image[0].filename}`,
       likes: 0,
       dislikes: 0,
       usersLiked: [],
-      usersDisliked: []
+      usersDisliked: [],
+      nom:req.body.nom,
+      prenom:req.body.prenom,
+      image_publication:req.body.image_publication,
       //image_publication:`${req.protocol}://${req.get("host")}/images/${req.image_publication.filename}`
     });
     sauces.save()

@@ -14,7 +14,7 @@ const route_sauces = require('./router/route_sauces')
 
 
 //projet_complet
- mongoose.connect(`mongodb+srv://${process.env.ENV_USER}:${process.env.ENV_PASSWORD}@expressapi.lzw8bql.mongodb.net/nouveau_bd?retryWrites=true&w=majority&appName=ExpressApi`,
+ mongoose.connect(`mongodb+srv://${process.env.ENV_USER}:${process.env.ENV_PASSWORD}@expressapi.lzw8bql.mongodb.net/bada?retryWrites=true&w=majority&appName=ExpressApi`,
 // {userNewUrlParser:true,useUnifiedTopology:true
 
 // }
