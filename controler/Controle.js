@@ -3,12 +3,10 @@ const web_token = require('jsonwebtoken');
 const Utilisateur = require('../models/Utilisateur')
 
 
-exports.AjouterUser = (req, res, next)=>{
-    console.log("oui ici");
+exports.AjouterUser = (req,  res, next)=>{
+    console.log("oui ouoiii ici");
    console.log(`${req.protocol}://${req.get("host")}/images/${req.file.filename}`);
-    console.log(req.body.mot);
-    console.log(req.body.email);
-    console.log(req.body);
+   
     bcryp
       .hash(req.body.mot, 10)
       .then((hash) => {

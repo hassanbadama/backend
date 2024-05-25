@@ -29,7 +29,7 @@ const route_sauces = require('./router/route_sauces')
 //rendre le service demande par front
 //cors(crousss origine resource sharhne partage) utiliser
 app.use((req,res, next)=>{
-   res.setHeader('Access-Control-Allow-Origin', '*'); //le lien de requette(localhost, http...)
+   res.setHeader('Access-Control-Allow-Origin', 'https://backend-mongodb-0jt7.onrender.com'); //le lien de requette(localhost, http...)
    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization');
    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTION');
    next();
