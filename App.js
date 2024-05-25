@@ -28,16 +28,26 @@ const route_sauces = require('./router/route_sauces')
 
 //rendre le service demande par front
 //cors(crousss origine resource sharhne partage) utiliser
-app.use((req,res, next)=>{
-   res.setHeader('Access-Control-Allow-Origin', 'https://backend-mongodb-0jt7.onrender.com/'); //le lien de requette(localhost, http...)
-   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization');
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTION');
-   next();
-});
+// app.use((req,res, next)=>{
+//    res.setHeader('Access-Control-Allow-Origin', 'https://backend-mongodb-0jt7.onrender.com/'); //le lien de requette(localhost, http...)
+//    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization');
+//    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTION');
+//    next();
+// });
+const corsOptions = {
+   origin: ['https://backend-mongodb-0jt7.onrender.com'],
+   credentials: true,
+   allowedHeaders: ['sessionId', 'Content-Type'],
+   exposedHeaders: ['sessionId'],
+   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+   preflightContinue: false,
+ }
+
 //passer toutes les donnees en json
 app.use(express.json());
 //passer les donnees en body  en json
 app.use(body_parser.json());
+app.use(cors(corsOptions));
 app.use('/api/auth',route_user);
 app.use('/api/auth',route_sauces);
 //app.use('/api/sauces',routerajout);
