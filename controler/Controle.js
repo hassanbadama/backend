@@ -3,16 +3,18 @@ const web_token = require('jsonwebtoken');
 const Utilisateur = require('../models/Utilisateur')
 
 
-exports.AjouterUser = (req,  res, next)=>{
-    console.log("oui ouoiii ici");
+exports.AjouterUser = (req, res, next)=>{
+    console.log("oui ici");
    console.log(`${req.protocol}://${req.get("host")}/images/${req.file.filename}`);
-   
+    console.log(req.body.mot);
+    console.log(req.body.email);
+    console.log(req.body);
     bcryp
       .hash(req.body.mot, 10)
       .then((hash) => {
         const utilisateur = new Utilisateur({
             nom: req.body.nom,
-            role:false,
+            role:true,
             prenom: req.body.prenom,
             mot: hash,
             email: req.body.email,
@@ -69,4 +71,10 @@ exports.AfficherUser = (req, res, next)=>{
     .then((data) => res.status(200).json(data))
     .catch(error => res.status(400).json({ error }));
 
+}
+exports.RechercheUser = (req, res, next) => {
+  const id = req.params.id
+  Utilisateur.findOne({ _id: id })
+    .then((data) => res.status(200).json(data))
+    .catch(error => res.status(400).json({ error }));
 }

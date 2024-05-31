@@ -8,6 +8,7 @@ const auth = require("../middlewaire/auth")
 const route = express.Router();
 route.post('/sauces',auth,multer, Control.ajouteSauce);
 route.post('/likes/:id', Control.likes);
+route.post('/like/:id', Control.message);
 route.get('/afficher',multer, Control.Afficher);
 route.delete('/supprimer/:id',auth,Control.delete);
 route.get('/rechercher/:id',Control.Recherche);

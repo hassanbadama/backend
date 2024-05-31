@@ -6,25 +6,22 @@ exports.ajouteSauce = (req, res, next) => {
     //recuperer toutes les donnee dans le formulaire
     console.log("teste reqqqq");
    
-   console.log(req.body.userId);
+   console.log(req.body);
    console.log(req.body.nom);
    console.log(req.body.description);
-   console.log(req.body.image_publication);
     const data = req.body
     console.log('enregitre');
     console.log(data);
     const sauces = new Sauces({
-      userId:req.body.userId,
-      description:req.body.description,
+      ...data,
       file:`${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
       // file: `/images/${req.files.image[0].filename}`,
       likes: 0,
       dislikes: 0,
       usersLiked: [],
       usersDisliked: [],
-      nom:req.body.nom,
-      prenom:req.body.prenom,
-      image_publication:req.body.image_publication,
+      message:{},
+      nbre_message:0
       //image_publication:`${req.protocol}://${req.get("host")}/images/${req.image_publication.filename}`
     });
     sauces.save()
@@ -39,6 +36,31 @@ exports.ajouteSauce = (req, res, next) => {
       .catch(error => res.status(400).json({ error }));
 
   }
+
+
+  exports.message = (req, res, next)=>{
+    console.log("message teste");
+    console.log(req.body);
+    const  message ={
+        id:req.body.id_message,
+       message: req.body.message
+
+    } 
+      Sauces.updateOne(
+        {_id:req.params.id},
+        {
+          // ajouter id de user qui a liké. ça fait d'une maniere automatique avec ($push et $inc element reconnu par js)
+          $push:{message:{message:req.body.message,id_message:req.body.id_message, nom:req.body.nom}},
+          $inc:{nbre_message:+1}
+        }
+    
+      ).then(() => res.status(201).json({ message: "objet liké" }))
+       .catch((error) => res.status(400).json({ error }));
+        
+
+
+  }
+
 
   exports.likes = (req, res, next)=>{
 

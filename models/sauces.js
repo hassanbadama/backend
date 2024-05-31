@@ -10,7 +10,7 @@ const sauces = mongoose.Schema({
     description:{
         type:String,
         required:true,
-       
+        unique:true
     },
     file:{
         type:String,
@@ -35,14 +35,31 @@ const sauces = mongoose.Schema({
         type:[String],
         required:false,
     },
+    message :{
+        message:String,
+        id_message:String,
+        nom:String
+    },
+    nbre_message:{
+        type:Number,
+        required:false,
+        default:0
+    },
+    id_message:{
+        type:Number,
+        required:false,
+        default:0
+    },
 
     nom:{
         type:String,
-        required:true
+        required:true,
+        
     },
     prenom:{
         type:String,
-        required:true
+        required:true,
+       
     },
     image_publication:{
         type:String,

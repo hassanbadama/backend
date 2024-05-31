@@ -9,5 +9,6 @@ const router = express.Router();
 router.post('/users',multer, Control.AjouterUser);
 router.post('/connexion', Control.Connexion);
 router.get('/AfficherUser', Control.AfficherUser);
+router.get('/rechercherUser/:id',Control.RechercheUser);
 
 module.exports = router;
